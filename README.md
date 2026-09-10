@@ -1,36 +1,35 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Pangasinan Heritage Digital Showcase
+
+**Student Name:** Bryan Bugayong
+**Selected Framework:** Next.js 14 (App Router, TypeScript, Tailwind CSS)
+
+**Live Website:** https://bryyydev.github.io/pangasinan-heritage/
+
+A digital showcase promoting cultural awareness and tourism for Pangasinan's heritage sites — Hundred Islands, Bolinao Lighthouse, and Balungao Hot Spring — built as a fully static, JAMstack-style site deployed on GitHub Pages.
+
+## Architecture
+
+- **Atomic Design** component structure under `app/components/` (`atoms/`, `molecules/`, `organisms/`).
+- **Static Site Generation (SSG)** — `next build` with `output: "export"` prerenders every route (home, destinations list, and each destination detail page via `generateStaticParams`) to static HTML at build time. No server is required at runtime.
+- **Client-side search** — the destinations page filters by name, location, and description entirely in the browser (via `useSearchParams`), since static hosting has no server to process search queries.
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to view it locally.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Building the Static Export
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+```
 
-## Learn More
+This generates a fully static `out/` directory, deployable to any static host.
 
-To learn more about Next.js, take a look at the following resources:
+## Deployment
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Deployed automatically to GitHub Pages via the workflow in `.github/workflows/deploy.yml` on every push to `main`.
