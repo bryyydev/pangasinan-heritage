@@ -2,6 +2,7 @@ import Image from "next/image";
 import HeaderNavigation from "@/app/components/organisms/HeaderNavigation";
 import HeritageGrid from "@/app/components/organisms/HeritageGrid";
 import Typography from "@/app/components/atoms/Typography";
+import { withBasePath } from "@/app/lib/basePath";
 
 export const metadata = {
   title: "Pangasinan Heritage | Discover Pangasinan's Treasures",
@@ -10,16 +11,7 @@ export const metadata = {
 };
 
 export default function Home() {
-  /**
-   * GitHub Pages serves the project from:
-   * /pangasinan-heritage/
-   *
-   * NEXT_PUBLIC_BASE_PATH is provided by the GitHub Actions workflow.
-   * It is empty during local development.
-   */
-  const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
-
-  const heroImage = `${basePath}/alaminos_bg.jpg`;
+  const heroImage = withBasePath("/alaminos_bg.jpg");
 
   return (
     <div className="flex min-h-screen flex-col overflow-x-hidden bg-[var(--bg-light)]">

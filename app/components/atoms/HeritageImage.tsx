@@ -1,4 +1,5 @@
 import Image, { ImageProps } from "next/image";
+import { withBasePath } from "@/app/lib/basePath";
 
 interface HeritageImageProps extends Omit<ImageProps, "fill"> {
   /** Tailwind height class applied to the wrapper. */
@@ -16,19 +17,7 @@ export default function HeritageImage({
   src,
   ...rest
 }: HeritageImageProps) {
-  /**
-   * GitHub Pages serves the project from:
-   * /pangasinan-heritage/
-   *
-   * NEXT_PUBLIC_BASE_PATH is set during the GitHub Actions build.
-   * It remains empty during local development.
-   */
-  const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
-
-  const imageSrc =
-    typeof src === "string" && src.startsWith("/")
-      ? `${basePath}${src}`
-      : src;
+  const imageSrc = typeof src === "string" ? withBasePath(src) : src;
 
   return (
     <div
